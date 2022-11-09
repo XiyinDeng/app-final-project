@@ -3,6 +3,3 @@ pandas
 seaborn
 matplotlib
 numpy
-color
-Image
-*
