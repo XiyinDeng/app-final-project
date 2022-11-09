@@ -3,7 +3,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib as plt
 import numpy as np
-import _tkinter
 import tkinter as TK
 from pylab import *
 from PIL import Image
