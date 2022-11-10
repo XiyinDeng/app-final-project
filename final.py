@@ -3,7 +3,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib as plt
 import numpy as np
-import tkinter as TK
 from pylab import *
 from PIL import Image
 
@@ -95,7 +94,9 @@ if genre == 'scatter diagram':
     f,ax = plt.subplots(figsize=(16,8))
     ax = sns.scatterplot(y=df.latitude,x=df.longitude,hue=df.room_type,palette="Purples")
     st.pyplot(f)
+
 elif genre == 'histogram':
+    df = df[df.neighbourhood_group.isin(neighbourhood_group_filter)]
     fig, ax = plt.subplots(figsize=(8, 6))
     sns.countplot(data=df, y='neighbourhood_group', hue='room_type', ax=ax, palette='Purples' )
     title = 'Count of Rooms/Room Types by each areas'
@@ -105,6 +106,7 @@ elif genre == 'histogram':
     st.pyplot(fig)
     sns.palplot(sns.color_palette("Blues"))
 elif genre == 'pie chart':
+    df= pd.read_csv('new-york.csv')
     room_type=df.room_type.value_counts()
     title = 'Percentage of Room Type'
     labels=['Entire apt','Private room','Shared room']
@@ -132,6 +134,7 @@ st.subheader('Question 2: The relation of price to neigbour_hood and room_type')
 x='neighbourhood_group'
 y='price'
 
+df = df[df.neighbourhood_group.isin(neighbourhood_group_filter)]
 title = 'Price per neighbourhood_group for Properties under $175'
 data_filtered = df.loc[df['price'] < 175]
 f, ax = plt.subplots(1,2,figsize=(15, 6))
